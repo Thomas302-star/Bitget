@@ -10,7 +10,10 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Bitget platform overview">BITGET</a>
-    <nav aria-label="Main navigation">
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-navigation" aria-label="Main navigation">
       <a href="#overview">Overview</a><a href="#why-bitget">Why Bitget</a><a href="#services">Services</a><a href="#trading">Trading</a><a href="#getting-started">Start</a><a href="#learn-more">Learn More</a><a href="#faq">FAQ</a><a href="#features">Explore</a>
     </nav>
   </header>
@@ -27,17 +30,19 @@
     <section class="notice section" aria-label="Important notice"><div><p class="eyebrow">IMPORTANT</p><h2>Check the details before using any financial product.</h2></div><p>Product availability, restrictions, fees and risks vary by location and product. Always review the current official terms and risk information before making decisions.</p></section>
   </main>
   <footer class="site-footer">
-    <div class="footer-main">
-      <div class="footer-brand"><a class="brand" href="#top">BITGET</a><p>Platform overview and general educational information.</p></div>
-      <div class="footer-links"><a href="#overview">Overview</a><a href="#services">Services</a><a href="#trading">Trading</a><a href="#faq">FAQ</a><a href="#learn-more">Learn More</a></div>
-    </div>
-    <div class="footer-disclosure">
-      <strong>Educational disclosure</strong>
-      <p>This website provides general educational information only. It is not financial, investment, legal or tax advice. Nothing on this website is a recommendation to buy, sell, trade or use any cryptocurrency or financial product. Product availability, fees, eligibility, restrictions and risks may change and may vary by location.</p>
-      <p>Always verify current information through official platform materials and consider your own circumstances before making financial decisions.</p>
-    </div>
+    <div class="footer-main"><div class="footer-brand"><a class="brand" href="#top">BITGET</a><p>Platform overview and general educational information.</p></div><div class="footer-links"><a href="#overview">Overview</a><a href="#services">Services</a><a href="#trading">Trading</a><a href="#faq">FAQ</a><a href="#learn-more">Learn More</a></div></div>
+    <div class="footer-disclosure"><strong>Educational disclosure</strong><p>This website provides general educational information only. It is not financial, investment, legal or tax advice. Nothing on this website is a recommendation to buy, sell, trade or use any cryptocurrency or financial product. Product availability, fees, eligibility, restrictions and risks may change and may vary by location.</p><p>Always verify current information through official platform materials and consider your own circumstances before making financial decisions.</p></div>
     <div class="footer-bottom"><span>BITGET PLATFORM OVERVIEW</span><span>Educational information only</span></div>
   </footer>
-  <script>const button=document.getElementById('learn-more-button');const panel=document.getElementById('learn-more-panel');button.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));panel.hidden=open;button.textContent=open?'Learn More':'Close Details';});</script>
+  <script>
+    const learnButton=document.getElementById('learn-more-button');
+    const learnPanel=document.getElementById('learn-more-panel');
+    learnButton.addEventListener('click',()=>{const open=learnButton.getAttribute('aria-expanded')==='true';learnButton.setAttribute('aria-expanded',String(!open));learnPanel.hidden=open;learnButton.textContent=open?'Learn More':'Close Details';});
+    const menuButton=document.querySelector('.menu-toggle');
+    const navigation=document.getElementById('main-navigation');
+    const navLinks=navigation.querySelectorAll('a');
+    menuButton.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')==='true';menuButton.setAttribute('aria-expanded',String(!open));menuButton.setAttribute('aria-label',open?'Open navigation':'Close navigation');navigation.classList.toggle('is-open',!open);});
+    navLinks.forEach(link=>link.addEventListener('click',()=>{menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation');navigation.classList.remove('is-open');}));
+  </script>
 </body>
 </html>
